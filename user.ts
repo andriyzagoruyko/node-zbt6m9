@@ -1,4 +1,3 @@
-const joi = require('joi');
 
 export interface UserEntry {
   email: string;
@@ -14,9 +13,3 @@ export interface UserDto {
   password: string;
 }
 
-export const userSchema = joi.object({
-  username: joi.string().min(3).max(24).required(),
-  email: joi.string().email().required(),
-  type: joi.string().required(),
-  password: joi.string().pattern(new RegExp('^[a-zA-Z0-9]{5,24}$')).required(),
-});
