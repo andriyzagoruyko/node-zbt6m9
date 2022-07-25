@@ -21,6 +21,7 @@ type AuthResponse = Response<UserResponse | ValidationErrorItem[] | string>
 export const registerHandler = async(req: Request, res: AuthResponse) => {
   try {
     console.info(`${req.url} POST request received: `, req.body);
+    //TODO: move the validation logic into the decorator
     const {username, email, type, password} = await registrationSchema.validateAsync(req.body);
     createUser({username, email, type, password})
     console.info(`${req.url} New user created: ${username}`);
@@ -43,6 +44,7 @@ export const registerHandler = async(req: Request, res: AuthResponse) => {
 export const loginHandler = async (req: Request, res: AuthResponse) => {
   try {
     console.info(`${req.url} POST request received: `, req.body);
+    //TODO: move the validation logic into the decorator
     const {username, password} = await loginScheme.validateAsync(req.body);
     const user = getUserByUsername(username)
 
